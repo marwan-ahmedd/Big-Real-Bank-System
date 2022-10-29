@@ -8,7 +8,6 @@ using namespace std;
 class BigReal
 {
     private:
-        double num;
         string realPart;
         string fractPart;
 
