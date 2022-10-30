@@ -132,12 +132,11 @@ int main() {
         cout<<b-a<<endl;
         cout << (a < b) << "\n";
         cout << (a > b) << "\n";
-        cout << a.Sign() << "\n";
+        cout << a.sign() << "\n";
         cout << b.size() << "\n";
-        a.push_front('0');
-        b.push_back('0');
-        cout << a << "\n";
-        cout << b << "\n";
+        cout << a.getNumber() << "\n";
+        a.setNumber("100");
+        cout << a.getNumber() << "\n";
     }
 
     return 0;
