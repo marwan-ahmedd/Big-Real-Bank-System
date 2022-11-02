@@ -30,7 +30,7 @@ class BigReal
         int size();
         int sign();
 
-        friend ostream& operator<<(ostream& out, BigReal num);
+        friend ostream& operator<<(ostream& out, BigReal& num);
         friend istream& operator>>(istream& in, BigReal& num);
 };
 
