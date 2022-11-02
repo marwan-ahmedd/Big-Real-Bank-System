@@ -1,10 +1,31 @@
 #include "BigReal.h"
 
 
-
-
 ////////////////////////////////////////////////////////////////
-bool BigReal ::operator< (BigReal anotherReal)
+BigReal :: BigReal(const BigReal& other)
+{
+    this->realPart = other.realPart;
+    this->fractPart = other.fractPart;
+}
+////////////////////////////////////////////////////////////////
+BigReal :: BigReal(BigReal&& other) : realPart(move(other.realPart)), fractPart(move(other.fractPart))
+{}
+////////////////////////////////////////////////////////////////
+BigReal& BigReal :: operator= (BigReal& other)
+{
+    this->realPart = other.realPart;
+    this->fractPart = other.fractPart;
+    return *this;
+}
+////////////////////////////////////////////////////////////////
+BigReal& BigReal :: operator= (BigReal&& other)
+{
+    this->realPart = move(other.realPart);
+    this->fractPart = move(other.fractPart);
+    return *this;
+}
+////////////////////////////////////////////////////////////////
+bool BigReal :: operator< (BigReal anotherReal)
 {
     BigReal result = *this - anotherReal;
 
@@ -14,7 +35,7 @@ bool BigReal ::operator< (BigReal anotherReal)
     return false;
 }
 ////////////////////////////////////////////////////////////////
-bool BigReal ::operator> (BigReal anotherReal)
+bool BigReal :: operator> (BigReal anotherReal)
 {
     BigReal result = *this - anotherReal;
 
@@ -29,7 +50,12 @@ bool BigReal :: operator== (BigReal anotherReal)
     // TODO
 }
 ////////////////////////////////////////////////////////////////
-int BigReal ::sign()
+int BigReal :: size()
+{
+    return realPart.length() + fractPart.length();
+}
+////////////////////////////////////////////////////////////////
+int BigReal :: sign()
 {
     if (realPart[0] == '-')
     {
@@ -44,13 +70,13 @@ int BigReal ::sign()
     return 0;
 }
 ////////////////////////////////////////////////////////////////
-ostream &operator<< (ostream &out, BigReal& num)
+ostream &operator<< (ostream& out, BigReal& num)
 {
     out << num.realPart + '.' + num.fractPart;
     return out;
 }
 ////////////////////////////////////////////////////////////////
-istream &operator>> (istream &in, BigReal &num)
+istream &operator>> (istream& in, BigReal& num)
 {
     string msg;
     cout << "Enter number: ";
