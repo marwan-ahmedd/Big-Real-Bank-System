@@ -5,6 +5,7 @@ bool BigReal::checkValid(string theNum)
     regex input("[-+]?[0-9]*\.[0-9]*");
     return regex_match(theNum, input);
 }
+///////////////////////////////////////////////////////////////
 BigReal::BigReal(double realNumber)
 {
     string strNum = to_string(realNumber);
@@ -53,15 +54,15 @@ BigReal :: BigReal(BigReal&& other) : realPart(move(other.realPart)), fractPart(
 ////////////////////////////////////////////////////////////////
 BigReal& BigReal :: operator= (BigReal& other)
 {
-    this->realPart = other.realPart;
-    this->fractPart = other.fractPart;
+    this->realPart = other.realPart;    // makes a copy of the other number's real part and assigns it to the lValue
+    this->fractPart = other.fractPart;  // makes a copy of the other number's fraction part and assigns it to the lValue
     return *this;
 }
 ////////////////////////////////////////////////////////////////
 BigReal& BigReal :: operator= (BigReal&& other)
 {
-    this->realPart = move(other.realPart);
-    this->fractPart = move(other.fractPart);
+    this->realPart = move(other.realPart);    // assigns the value of the other's real part to the lValue and deletes the other's realPart
+    this->fractPart = move(other.fractPart);  // assigns the value of the other'fraction part to the lValue and deletes the other's fraction
     return *this;
 }
 ////////////////////////////////////////////////////////////////
@@ -77,7 +78,7 @@ BigReal BigReal::operator- (BigReal& other)
 ////////////////////////////////////////////////////////////////
 bool BigReal :: operator< (BigReal anotherReal)
 {
-    BigReal result = *this - anotherReal;
+    BigReal result = *this - anotherReal;   // subtract the number with the anotherReal to check which of them is bigger
 
     if (result.sign())
         return true;
@@ -87,7 +88,7 @@ bool BigReal :: operator< (BigReal anotherReal)
 ////////////////////////////////////////////////////////////////
 bool BigReal :: operator> (BigReal anotherReal)
 {
-    BigReal result = *this - anotherReal;
+    BigReal result = *this - anotherReal; // subtract the number with the anotherReal to check which of them is bigger
 
     if (result.sign())
         return false;
@@ -97,12 +98,12 @@ bool BigReal :: operator> (BigReal anotherReal)
 ////////////////////////////////////////////////////////////////
 bool BigReal :: operator== (BigReal anotherReal)
 {
-    return ((*this + anotherReal) == (*this + *this));
+    return ((*this + anotherReal) == (*this + *this));  // check if the number + anotherReal equals to 2 * the number
 }
 ////////////////////////////////////////////////////////////////
 int BigReal :: size()
 {
-    return realPart.length() + fractPart.length();
+    return realPart.length() + fractPart.length();  // return size of number
 }
 ////////////////////////////////////////////////////////////////
 int BigReal :: sign()
