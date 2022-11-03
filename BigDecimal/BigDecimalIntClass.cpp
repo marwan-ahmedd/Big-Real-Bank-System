@@ -15,7 +15,7 @@ such as: +, -, <, and >.
 // regex function that checks the validation of the input.
 bool BigDecimalInt :: checkValidInput(string input)
 {
-    regex validInput("[-+]?[0-9]+");
+    regex validInput("[-+]?[0-9]*\.[0-9]*");
     return regex_match(input, validInput);
 }
 
@@ -26,20 +26,20 @@ void BigDecimalInt :: setNumber(string num)
     if(validNumber)
     {
         number = num;
-        if(number[0] == '+')
-        {
-            number.erase(0,1);
-            signNumber = '+';
-        }
-        else if (number[0] == '-')
-        {
-            number.erase(0,1);
-            signNumber = '-';
-        }
-        else
-        {
-            signNumber = '+';
-        }
+//        if(number[0] == '+')
+//        {
+//            number.erase(0,1);
+//            signNumber = '+';
+//        }
+//        else if (number[0] == '-')
+//        {
+//            number.erase(0,1);
+//            signNumber = '-';
+//        }
+//        else
+//        {
+//            signNumber = '+';
+//        }
     }
     else
     {

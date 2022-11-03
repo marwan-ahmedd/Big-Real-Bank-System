@@ -1,6 +1,8 @@
 #ifndef _BIGREAL_H
 #define _BIGREAL_H
 #include <iostream>
+#include <string>
+#include <regex>
 #include "BigDecimal/BigDecimalIntClass.h"
 
 using namespace std;
@@ -20,6 +22,7 @@ class BigReal
         BigReal& operator= (BigReal& other);
         BigReal& operator= (BigReal&& other);
 
+        bool checkValid(string theNum);
         BigReal operator+ (BigReal& other);
         BigReal operator- (BigReal& other);
 
