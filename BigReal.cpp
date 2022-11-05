@@ -1,46 +1,28 @@
 #include "BigReal.h"
 
-bool BigReal::checkValid(string theNum)
-{
-    regex input("[-+]?[0-9]*\.[0-9]*");
-    return regex_match(theNum, input);
-}
 ///////////////////////////////////////////////////////////////
 BigReal::BigReal(double realNumber)
 {
     string strNum = to_string(realNumber);
-    bool valid = checkValid(strNum);
 
-    if (valid){
-        int pos = strNum.find('.');
-        realPart = strNum.substr(0, pos);
-        fractPart = strNum.substr(pos+1);
-    }
-    else{
-        cout << "Invalid input.\n";
-        exit(1);
-    }
+    int pos = strNum.find('.');
+    realPart = strNum.substr(0, pos);
+    fractPart = strNum.substr(pos+1);
 }
 ///////////////////////////////////////////////////////////////
 BigReal::BigReal(string realNumber)
 {
-    bool valid = checkValid(realNumber);
-
-    if (valid){
-        int pos = realNumber.find('.');
-        realPart = realNumber.substr(0, pos);
-        fractPart = realNumber.substr(pos+1);
-    }
-    else{
-        cout << "Invalid input.\n";
-        exit(1);
-    }
+    int pos = realNumber.find('.');
+    realPart = realNumber.substr(0, pos);
+    fractPart = realNumber.substr(pos+1);
 }
 ///////////////////////////////////////////////////////////////
 BigReal::BigReal (BigDecimalInt bigInteger)
 {
-    realPart = bigInteger.getNumber();
-    fractPart = "0";
+    if (bigInteger.sign() == 0)
+        realPart = '-' + bigInteger.getNumber();
+    else
+        realPart = bigInteger.getNumber();
 }
 ////////////////////////////////////////////////////////////////
 BigReal :: BigReal(const BigReal& other)
@@ -68,12 +50,82 @@ BigReal& BigReal :: operator= (BigReal&& other)
 ////////////////////////////////////////////////////////////////
 BigReal BigReal::operator+ (BigReal& other)
 {
-    
+    BigReal res("0.0");
+
+    BigDecimalInt obj1(realPart), obj2(other.realPart);
+    BigDecimalInt sum(obj1+obj2);
+
+    while (fractPart.length() > other.fractPart.length())
+        other.fractPart += '0';
+    while (fractPart.length() < other.fractPart.length())
+        fractPart += '0';
+    string both1 = realPart + fractPart, both2 = other.realPart + other.fractPart;
+    BigDecimalInt obj3(both1), obj4(both2);
+    BigDecimalInt sum2(obj3+obj4);
+
+    string s1 = sum.getNumber(), s2 = sum2.getNumber();
+    bool checkLast = false;
+    for (int i = 0; i < sum.size(); ++i){
+        if (s2[i] != s1[i]){
+            s2.insert(i+1, ".");
+            checkLast = false;
+            break;
+        }
+        if (s2[i] == s1[i])
+            checkLast = true;
+    }
+    if (checkLast)
+        s2.insert(s1.length(), ".");
+
+    if (sum2.sign() == 0){
+        string negative = "-";
+        negative += s2; s2 = negative;
+    }
+
+    int pos = s2.find('.');
+    res.realPart = s2.substr(0, pos);
+    res.fractPart = s2.substr(pos+1);
+    return res;
 }
 ////////////////////////////////////////////////////////////////
 BigReal BigReal::operator- (BigReal& other)
 {
-    // Ongoing
+    BigReal ans("0.0");
+
+    BigDecimalInt obj5(realPart), obj6(other.realPart);
+    BigDecimalInt sum3(obj5-obj6);
+
+    while (fractPart.length() > other.fractPart.length())
+        other.fractPart += '0';
+    while (fractPart.length() < other.fractPart.length())
+        fractPart += '0';
+    string both1 = realPart + fractPart, both2 = other.realPart + other.fractPart;
+    BigDecimalInt obj7(both1), obj8(both2);
+    BigDecimalInt sum4(obj7-obj8);
+
+    string s1 = sum3.getNumber(), s2 = sum4.getNumber();
+    bool checkLast = false;
+    for (int i = 0; i < sum3.size(); ++i){
+        if (s2[i] != s1[i]){
+            s2.insert(i+1, ".");
+            checkLast = false;
+            break;
+        }
+        if (s2[i] == s1[i])
+            checkLast = true;
+    }
+    if (checkLast)
+        s2.insert(s1.length(), ".");
+
+    if (sum4.sign() == 0){
+        string negative = "-";
+        negative += s2; s2 = negative;
+    }
+
+    int pos = s2.find('.');
+    ans.realPart = s2.substr(0, pos);
+    ans.fractPart = s2.substr(pos+1);
+    return ans;
 }
 ////////////////////////////////////////////////////////////////
 bool BigReal :: operator< (BigReal anotherReal)

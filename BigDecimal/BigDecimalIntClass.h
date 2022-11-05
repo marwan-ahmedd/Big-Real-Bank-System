@@ -48,7 +48,5 @@ public:
 
 };
 
-string addition(string num1,string num2);
-string subtraction(string num1,string num2);
 
 #endif //BIGDECIMALINT_BIGDECIMALINTCLASS_H
