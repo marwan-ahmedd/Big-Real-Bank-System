@@ -23,6 +23,7 @@ BigReal::BigReal (BigDecimalInt bigInteger)
         realPart = '-' + bigInteger.getNumber();
     else
         realPart = bigInteger.getNumber();
+    fractPart = "0";
 }
 ////////////////////////////////////////////////////////////////
 BigReal :: BigReal(const BigReal& other)
