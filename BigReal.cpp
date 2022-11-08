@@ -174,7 +174,7 @@ int BigReal :: sign()
     return 0;
 }
 ////////////////////////////////////////////////////////////////
-ostream &operator<< (ostream& out, BigReal& num)
+ostream &operator<< (ostream& out, BigReal num)
 {
     if (num.realPart != "" and num.fractPart != "")
         out << num.realPart + '.' + num.fractPart << '\n';
