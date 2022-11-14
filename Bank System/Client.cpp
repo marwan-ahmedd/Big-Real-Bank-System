@@ -10,9 +10,6 @@ istream &operator>>(istream &in, Client user)
 
     cout << "Please Enter Client Phone =======> ";
     in >> user.phoneNumber;
-
-    cout << "What Type of Account Do You Like? (1) Basic (2) Saving � Type 1 or 2 =========> ";
-    in >> user.accountType;
     
     return in;
 }
