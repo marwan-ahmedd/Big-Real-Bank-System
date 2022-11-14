@@ -4,6 +4,7 @@ istream &operator>>(istream &in, Client user)
 {
     cout << "Please Enter Client Name =========> ";
     in >> user.name;
+    cout << user.name;
 
     cout << "Please Enter Client Address =======> ";
     in >> user.address;
@@ -14,7 +15,7 @@ istream &operator>>(istream &in, Client user)
     return in;
 }
 //////////////////////////////////////////////////////////////
-ostream &operator<<(ostream &out, Client user)
+ostream &operator<<(ostream &out, Client& user)
 {
     out << "---------- " << user.getName() << " -----------\n";
     out << "Address: " << user.getAddress() << ", Phone: " << user.getPhone();
@@ -24,7 +25,7 @@ ostream &operator<<(ostream &out, Client user)
         out << " (Basic)\n";
     else if (user.getType() == 2)
         out << " (Savings)\n";
-    out << "Balance: " << user.clientAccount->getBalance();
+    out << "Balance: " << user.clientAccount->getBalance() << '\n';
 
     return out;
 }

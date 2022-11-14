@@ -1,5 +1,6 @@
 #include "Header.hpp"
 
+int BankAccount :: id = 1;
 BankAccount ::BankAccount() : balance(0)
 {
     accountID = "FCAI-" + id++;

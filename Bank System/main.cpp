@@ -10,7 +10,6 @@ int main()
     while (true)
     {
         BankApplication up;
-
     }
     
 

@@ -6,12 +6,13 @@
 #include <cstring>
 #include <map>
 using namespace std;
+
 //////////////////////////////////////////////////////////////
 class BankAccount
 {
     private:
         string accountID;
-        int id = 1;
+        static int id;
         double balance;
 
     public:
@@ -52,7 +53,7 @@ class Client
     public:
         BankAccount *clientAccount = NULL;
         friend istream &operator>>(istream &in, Client user);
-        friend ostream &operator<<(ostream &out, Client user);
+        friend ostream &operator<<(ostream &out, Client& user);
 
         string getName() { return name; }
         string getAddress() { return address; }
@@ -67,7 +68,6 @@ class Client
 //////////////////////////////////////////////////////////////
 class BankApplication
 {
-    map <string, Client> mp;
     string name, phone, address;
     public:
         BankApplication();
@@ -77,5 +77,5 @@ class BankApplication
         // void deposit();
 };
 //////////////////////////////////////////////////////////////
-
+map<string, Client> mp;
 #endif

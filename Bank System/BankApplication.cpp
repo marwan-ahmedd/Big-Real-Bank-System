@@ -4,7 +4,7 @@ BankApplication :: BankApplication()
 {
 
     int choice;
-    cout << "Welcome to FCAI Banking Application\n";
+    cout << "\n\nWelcome to FCAI Banking Application\n";
     cout << "1. Create a New Account\n";
     cout << "2. List Clients and Accounts\n";
     cout << "3. Withdraw Money\n";
@@ -36,7 +36,7 @@ bool BankApplication :: addClient()
     cin >> user;
 
     int choice;
-    cout << "What Type of Account Do You Like? (1) Basic (2) Saving – Type 1 or 2 =========> ";
+    cout << "What Type of Account Do You Like? (1) Basic (2) Saving - Type 1 or 2 =========> ";
     cin >> choice;
     
     user.setAccountType(choice);
@@ -53,5 +53,15 @@ bool BankApplication :: addClient()
 
 void BankApplication :: listAccounts()
 {
-    cout << mp["FCAI-1"];
+    ifstream dataFile;
+    string line;
+
+    dataFile.open("Clients-Data.txt");
+
+    while (getline(dataFile, line))
+    {
+        cout << line << endl;
+    }
+
+    dataFile.close();
 }
