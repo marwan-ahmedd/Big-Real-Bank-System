@@ -1,4 +1,4 @@
-#include "header.h"
+#include "Header.hpp"
 
 BankAccount ::BankAccount() : balance(0)
 {
