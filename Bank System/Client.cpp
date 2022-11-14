@@ -4,10 +4,9 @@ istream &operator>>(istream &in, Client& user)
 {
     cout << "Please Enter Client Name =========> ";
     in >> user.name;
-    cout << user.name;
 
     cout << "Please Enter Client Address =======> ";
-    in >> user.address;
+    cin >> user.address;
 
     cout << "Please Enter Client Phone =======> ";
     in >> user.phoneNumber;

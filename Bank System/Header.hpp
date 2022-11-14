@@ -73,8 +73,8 @@ class BankApplication
         BankApplication();
         bool addClient();
         void listAccounts();
-        // void withDraw();
-        // void deposit();
+        void withDraw();
+        void deposit();
 };
 //////////////////////////////////////////////////////////////
 map<string, Client> mp;

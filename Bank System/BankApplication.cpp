@@ -4,7 +4,7 @@ BankApplication :: BankApplication()
 {
 
     int choice;
-    cout << "\n\nWelcome to FCAI Banking Application\n";
+    cout << "\nWelcome to FCAI Banking Application\n";
     cout << "1. Create a New Account\n";
     cout << "2. List Clients and Accounts\n";
     cout << "3. Withdraw Money\n";
@@ -14,18 +14,20 @@ BankApplication :: BankApplication()
 
     switch (choice)
     {
-    case 1:
-        addClient();
-        break;
-    case 2:
-        listAccounts();
-        break;
-    // case 3:
-    //      // TODO -> withDraw
-    // case 4:
-    //     // TODO -> Deposit
-    default:
-        break;
+        case 1:
+            addClient();
+            break;
+        case 2:
+            listAccounts();
+            break;
+        case 3:
+            withDraw();
+            break;
+        case 4:
+            deposit();
+            break;
+        default:
+            break;
     }
     cout << "-------------------------------------------------------------------\n";
 }
@@ -64,4 +66,47 @@ void BankApplication :: listAccounts()
     }
 
     dataFile.close();
+}
+
+void BankApplication :: withDraw()
+{
+    string id;
+    double val;
+
+    cout << "Please Enter Account ID (e.g., FCAI-015) =========> ";
+    cin >> id;
+    cout << mp[id];
+
+    tag:;   
+    cout << "Please Enter The Amount to Withdraw =========> ";
+    cin >> val;
+    if (mp[id].clientAccount->withDraw(val))
+    {
+        goto tag;
+    }
+
+    cout << "Thank You.\n";
+    cout << "Account ID: " << mp[id].clientAccount->getID() << '\n';
+    cout << "New Balance: " << mp[id].clientAccount->getBalance() << '\n';
+}
+
+void BankApplication :: deposit()
+{
+    string id;
+    double val;
+
+    cout << "Please Enter Account ID (e.g., FCAI-015) =========> ";
+    cin >> id;
+    cout << mp[id];
+
+    tag:;
+    cout << "Please Enter The Amount to deposit =========> ";
+    cin >> val;
+    if (mp[id].clientAccount->deposit(val))
+    {
+        goto tag;
+    }
+    cout << "Thank You.\n";
+    cout << "Account ID: " << mp[id].clientAccount->getID() << '\n';
+    cout << "New Balance: " << mp[id].clientAccount->getBalance() << '\n';
 }

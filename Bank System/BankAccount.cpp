@@ -35,11 +35,11 @@ int BankAccount ::deposit(double amount)
     if (amount <= 0)
     {
         cout << "Sorry, Invalid Number.\n";
-        return 0;
+        return 1;
     }
     else
     {
         balance += amount;
-        return 1;
+        return 0;
     }
 }
