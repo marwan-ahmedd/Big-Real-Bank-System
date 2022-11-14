@@ -1,6 +1,6 @@
 #include "Header.hpp"
 
-istream &operator>>(istream &in, Client user)
+istream &operator>>(istream &in, Client& user)
 {
     cout << "Please Enter Client Name =========> ";
     in >> user.name;
@@ -17,8 +17,8 @@ istream &operator>>(istream &in, Client user)
 //////////////////////////////////////////////////////////////
 ostream &operator<<(ostream &out, Client& user)
 {
-    out << "---------- " << user.getName() << " -----------\n";
-    out << "Address: " << user.getAddress() << ", Phone: " << user.getPhone();
+    out << "---------- " << user.name << " -----------\n";
+    out << "Address: " << user.address << ", Phone: " << user.getPhone();
     out << "\nAccount ID: " << user.clientAccount->getID();
 
     if (user.getType() == 1)

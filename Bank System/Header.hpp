@@ -52,7 +52,7 @@ class Client
 
     public:
         BankAccount *clientAccount = NULL;
-        friend istream &operator>>(istream &in, Client user);
+        friend istream &operator>>(istream &in, Client& user);
         friend ostream &operator<<(ostream &out, Client& user);
 
         string getName() { return name; }
