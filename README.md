@@ -5,7 +5,7 @@ The bank system includes the following features:
 
 * Create an account: Users can create a basic or savings account by providing their personal information. The system securely stores the user's data using industry-standard encryption techniques.
 
-*View account balance: Users can view their account balance by logging into their account. The system displays the current balance in their account.
+* View account balance: Users can view their account balance by logging into their account. The system displays the current balance in their account.
 
 * Deposit or withdraw money: Users can deposit or withdraw money from their account by entering the amount of money they want to add or subtract from their balance.
 
